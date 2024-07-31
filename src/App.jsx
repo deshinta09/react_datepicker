@@ -1,21 +1,18 @@
 import DatePicker from "react-datepicker";
 import { useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
+import DropDown from "./components/DropDown";
 
 function App() {
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-  const [popUpDate, setPopUpDate] = useState(false);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
   const onChange = (dates) => {
     const [start, end] = dates;
     setStartDate(start);
     setEndDate(end);
   };
-  // console.log({ startDate, endDate }, "<<< date");
-  // console.log(
-  //   `${startDate.getDate()}-${startDate.getMonth()}-${startDate.getFullYear()}`,
-  //   "<<< type of"
-  // );
+  const options = ["Option 1", "Option 2", "Option 3"];
+  const [selectedOptions, setSelectedOptions] = useState([]);
 
   const formatDate = (date) =>
     `${date.getDate()}-${date.getMonth()}-${date.getFullYear()}`;
@@ -23,13 +20,7 @@ function App() {
   return (
     <>
       <form action="" className="grid justify-center items-center">
-        {/* <label htmlFor="date-range" onClick={() => setPopUpDate(true)}>
-          start date {formatDate(startDate)} end date {formatDate(endDate)}
-        </label> */}
         <div className="grid">
-          {/* <label htmlFor="date">
-            {formatDate(startDate)} to {formatDate(endDate)}
-          </label> */}
           <DatePicker
             className="p-3 w-64"
             selectsRange={true}
@@ -40,19 +31,15 @@ function App() {
             dateFormat="d MMMM yyyy"
             placeholderText="Date Book"
           />
+          <div className="p-6">
+            <h1 className="mb-4">Drop Down Checkbox Example</h1>
+            <DropDown
+              options={options}
+              selectedOptions={selectedOptions}
+              setSelectedOptions={setSelectedOptions}
+            />
+          </div>
         </div>
-        {/* {!popUpDate ? (
-          ""
-        ) : (
-          <DatePicker
-            selected={startDate}
-            onChange={onChange}
-            startDate={startDate}
-            endDate={endDate}
-            selectsRange
-            inline
-          />
-        )} */}
       </form>
     </>
   );
