@@ -3,6 +3,8 @@ import { useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import DropDown from "./components/DropDown";
 import "flowbite";
+import Flatpickr from "react-flatpickr";
+import "flatpickr/dist/themes/material_green.css";
 
 function App() {
   const [startDate, setStartDate] = useState(null);
@@ -15,13 +17,23 @@ function App() {
   const options = ["Option 1", "Option 2", "Option 3"];
   const [selectedOptions, setSelectedOptions] = useState([]);
 
-  const formatDate = (date) =>
-    `${date.getDate()}-${date.getMonth()}-${date.getFullYear()}`;
+  const optionFlatpickr = {
+    mode: "range",
+    minDate: "today",
+    dateFormat: "Y-m-d",
+    disable: [
+      {
+        from: "2024-08-04",
+        to: "2024-08-07",
+      },
+    ],
+  };
 
   return (
     <>
       <form action="" className="grid justify-center items-center">
         <div className="grid">
+          {/* date picker */}
           <DatePicker
             className="p-3 w-64"
             selectsRange={true}
@@ -32,6 +44,9 @@ function App() {
             dateFormat="d MMMM yyyy"
             placeholderText="Date Book"
           />
+          {/* date picker end */}
+
+          {/* drop down */}
           <div className="p-6">
             <h1 className="mb-4">Drop Down Checkbox Example</h1>
             <DropDown
@@ -40,7 +55,9 @@ function App() {
               setSelectedOptions={setSelectedOptions}
             />
           </div>
+          {/* drop down end */}
 
+          {/* flowbite */}
           <div
             id="date-range-picker"
             date-rangepicker="true"
@@ -67,6 +84,11 @@ function App() {
               />
             </div>
           </div>
+          {/* flowbite end */}
+          <Flatpickr options={optionFlatpickr} />
+          {/* flatpickr */}
+          <div></div>
+          {/* flatpickr end */}
         </div>
       </form>
     </>
