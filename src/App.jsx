@@ -6,13 +6,15 @@ import "flowbite";
 import Flatpickr from "react-flatpickr";
 import "flatpickr/dist/themes/material_green.css";
 // material ui
-import OutlinedInput from "@mui/material/OutlinedInput";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import ListItemText from "@mui/material/ListItemText";
-import Select from "@mui/material/Select";
-import Checkbox from "@mui/material/Checkbox";
+import {
+  InputLabel,
+  MenuItem,
+  FormControl,
+  ListItemText,
+  Select,
+  Checkbox,
+  OutlinedInput,
+} from "@mui/material";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -80,12 +82,7 @@ function App() {
             {/* material ui */}
             <div>
               <FormControl sx={{ m: 1, width: 300 }}>
-                <InputLabel
-                  className="focus:outline-none focus:ring-2 ring-[#D2AD83]"
-                  id="demo-multiple-checkbox-label"
-                >
-                  Tag
-                </InputLabel>
+                <InputLabel id="demo-multiple-checkbox-label">Tag</InputLabel>
                 <Select
                   labelId="demo-multiple-checkbox-label"
                   id="demo-multiple-checkbox"
@@ -100,6 +97,7 @@ function App() {
                   }
                   MenuProps={MenuProps}
                   sx={{ borderRadius: "100px" }}
+                  className="focus:outline-none focus:ring-2 ring-[#D2AD83] hover:outline-none hover:ring-2"
                 >
                   {names.map((name) => (
                     <MenuItem key={name} value={name}>
