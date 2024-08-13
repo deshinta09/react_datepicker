@@ -50,6 +50,8 @@ function App() {
   };
   const options = ["Option 1", "Option 2", "Option 3"];
   const [selectedOptions, setSelectedOptions] = useState([]);
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [isValid, setIsValid] = useState(true);
 
   const optionFlatpickr = {
     mode: "range",
@@ -72,6 +74,12 @@ function App() {
       // On autofill we get a stringified value.
       typeof value === "string" ? value.split(",") : value
     );
+  };
+
+  const validatePhone = (value) => {
+    const phoneRegex = /^[0-9]{10,15}$/;
+    setIsValid(phoneRegex.test(value));
+    setPhoneNumber(value);
   };
 
   return (
@@ -276,7 +284,39 @@ function App() {
             </div>
             {/* flatpickr select radio end */}
 
-            <div></div>
+            <div className="flex flex-col">
+              <label htmlFor="phone" className="mb-2 text-gray-700">
+                Nomor Telepon:
+              </label>
+              <input
+                className={`px-4 py-2 rounded-md focus:outline-none ${
+                  isValid ? "ring-0" : "focus:ring-2 focus:ring-red-500"
+                }`}
+                type="tel"
+                name="telphone"
+                placeholder="888 888 8888"
+                pattern="[0-9]{3} [0-9]{3} [0-9]{4}"
+                onKeyUp={(e) => validatePhone(e.target.value)}
+                maxlength="12"
+                title="Ten digits code"
+                required
+              />
+              {/* <input
+                type="tel"
+                id="phone"
+                // value={phoneNumber}
+                onKeyUp={(e) => validatePhone(e.target.value)}
+                className={`px-4 py-2 rounded-md focus:outline-none ${
+                  isValid ? "ring-0" : "focus:ring-2 focus:ring-red-500"
+                }`}
+                placeholder="Masukkan nomor telepon"
+              /> */}
+              {!isValid && (
+                <span className="text-red-500 text-sm mt-1">
+                  Nomor telepon tidak valid.
+                </span>
+              )}
+            </div>
           </div>
         </form>
       </div>
