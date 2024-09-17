@@ -45,7 +45,13 @@ function facilitiesByCategory(data_facilities) {
   return result;
 }
 
-console.log(facilitiesByCategory(have_facility));
+// console.log(facilitiesByCategory(have_facility));
+console.log(satu("dijalankan sebelum function"));
+
+function satu(params) {
+  return "function satu", params;
+}
+console.log(satu("dijalankan setelah function"));
 
 // let data = [["a", "b"], ["d", "e"], ["f"]];
 // data[0].push("c");
