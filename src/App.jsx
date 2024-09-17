@@ -1,5 +1,5 @@
 import DatePicker from "react-datepicker";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import DropDown from "./components/DropDown";
 import "flowbite";
@@ -53,6 +53,7 @@ function App() {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isValid, setIsValid] = useState(true);
+  const [date, setDate] = useState(null);
 
   const optionFlatpickr = {
     mode: "range",
@@ -65,6 +66,15 @@ function App() {
       },
     ],
   };
+
+  // date react flatpickr
+  const disabledDates = [
+    { date: "2024-09-20", className: "disabled-date-red" },
+    { date: "2024-09-22", className: "disabled-date-blue" },
+    { date: "2024-09-25", className: "disabled-date-green" },
+  ];
+
+  const disabledDatesArray = disabledDates.map((item) => item.date);
   // material ui
   const [personName, setPersonName] = useState([]);
   const handleChange = (event) => {
@@ -83,9 +93,31 @@ function App() {
     setPhoneNumber(value);
   };
 
+  useEffect(() => {
+    const fp = document.querySelector(".flatpickr-calendar");
+    if (fp) {
+      const days = fp.querySelectorAll(".flatpickr-day");
+      // console.log({ days }, "<< days");
+
+      days.forEach((day) => {
+        const dayDate = day.dateObj.toISOString().split("T")[0];
+        // console.log({ day, dayDate }, "<< day and day date");
+
+        const matchedDate = disabledDates.find((item) => item.date === dayDate);
+        // console.log(matchedDate, "<< match date");
+
+        if (matchedDate) {
+          // console.log(matchedDate, "<< masuk kondisi matched date");
+
+          day.classList.add(matchedDate.className);
+        }
+      });
+    }
+  }, [date]);
+
   return (
     <>
-      <div className="flex justify-center items-center h-screen">
+      <div className="flex justify-center items-center h-screen p-5">
         <form action="" className="grid gap-3">
           <div className="grid gap-5">
             {/* material ui */}
@@ -319,8 +351,18 @@ function App() {
               )}
             </div>
           </div>
+          <div>{/* <CarouselComponent /> */}</div>
+
           <div>
-            <CarouselComponent />
+            <Flatpickr
+              value={date}
+              onChange={(selectedDates) => setDate(selectedDates)}
+              options={{
+                disable: disabledDatesArray,
+                dateFormat: "Y-m-d",
+              }}
+              className="custom-flatpickr"
+            />
           </div>
         </form>
       </div>

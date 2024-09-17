@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.flatpickr-day.disabled-date-red {
+  background-color: rgba(255, 0, 0, 0.5) !important;
+  color: white !important;
+}
+
+.flatpickr-day.disabled-date-blue {
+  background-color: rgba(0, 0, 255, 0.5) !important;
+  color: white !important;
+}
+
+.flatpickr-day.disabled-date-green {
+  background-color: rgba(0, 255, 0, 0.5) !important;
+  color: white !important;
+}
