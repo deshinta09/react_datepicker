@@ -41,7 +41,7 @@ const names = [
   "Kelly Snyder",
 ];
 
-export default function Home() {
+export default function FormPage() {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const onChange = (dates) => {

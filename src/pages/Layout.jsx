@@ -1,37 +1,36 @@
-import { useState } from "react";
+import { useRef } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
 export default function Layout() {
   const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
+  const drawerCheckbox = useRef(null);
+
+  const closeDrawer = () => {
+    if (drawerCheckbox.current) {
+      drawerCheckbox.current.checked = false; // Tutup drawer secara manual
+    }
+  };
 
   return (
-    // <div className={`drawer`}>
-    <div className={`drawer${isOpen && " drawer-open"}`}>
+    <div className="drawer">
       <input
         id="my-drawer"
         type="checkbox"
         className="drawer-toggle"
-        checked={isOpen}
+        ref={drawerCheckbox}
       />
-      {/* <div className="drawer-content"> */}
       <div className="bg-blue-700 p-4">
-        <label
-          htmlFor="my-drawer"
-          className="btn btn-primary drawer-button"
-          onClick={() => setIsOpen(!isOpen)}
-        >
+        <label htmlFor="my-drawer" className="btn btn-primary drawer-button">
           Open drawer
         </label>
       </div>
       <div className="w-screen py-5 flex justify-center gap-5">
         <Outlet />
       </div>
-      {/* </div> */}
       <div className="drawer-side">
         <label
           htmlFor="my-drawer"
-          aria-label={isOpen ? "close sidebar" : "open sidebar"}
+          aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
         <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
@@ -39,7 +38,7 @@ export default function Layout() {
           <li
             onClick={() => {
               navigate("/");
-              setIsOpen(!isOpen);
+              closeDrawer();
             }}
           >
             <a>Home</a>
@@ -47,7 +46,7 @@ export default function Layout() {
           <li
             onClick={() => {
               navigate("/about");
-              setIsOpen(!isOpen);
+              closeDrawer();
             }}
           >
             <a>About</a>
