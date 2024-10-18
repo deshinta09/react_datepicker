@@ -4,7 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import DropDown from "../components/DropDown";
 import "flowbite";
 import Flatpickr from "react-flatpickr";
-import "flatpickr/dist/themes/material_green.css";
+import "flatpickr/dist/themes/material_blue.css";
 // material ui
 import {
   InputLabel,
@@ -205,7 +205,13 @@ export default function FormPage() {
             {/* flowbite end */}
 
             {/* flatpickr */}
-            <Flatpickr options={optionFlatpickr} />
+            <div className="flex">
+              <img src="./calendar.svg" alt="icon_date" />
+              <Flatpickr
+                options={optionFlatpickr}
+                className="active:border-none active:border-0 form-input"
+              />
+            </div>
             {/* flatpickr end */}
 
             {/* flatpickr select radio */}
