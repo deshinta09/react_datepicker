@@ -13,7 +13,7 @@
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
     "@mui/material": "^5.16.6",
-    "@react-google-maps/api": "^2.20.6",
+    "@react-google-maps/api": "^2.20.7",
     "flatpickr": "^4.6.13",
     "flowbite": "^2.4.1",
     "react": "^18.3.1",
