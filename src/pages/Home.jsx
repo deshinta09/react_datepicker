@@ -4,9 +4,7 @@ import GoogleMapPage from "./GoogleMap";
 export default function Home() {
   return (
     <>
-      <GoogleMapPage
-        onLocationSelect={(location) => console.log(location, "<< location")}
-      />
+      <GoogleMapPage onLocationSelect={(location) => ""} />
       {/* <Card />
       <Card />
       <Card /> */}
