@@ -1,13 +1,17 @@
 import Card from "../components/Card";
 import GoogleMapPage from "./GoogleMap";
+import TableDragDrop from "./TableDragDrop";
+import TableManagement from "./TableManagement";
 
 export default function Home() {
   return (
     <>
-      <GoogleMapPage onLocationSelect={(location) => ""} />
+      {/* <GoogleMapPage onLocationSelect={(location) => ""} /> */}
       {/* <Card />
       <Card />
       <Card /> */}
+      {/* <TableManagement /> */}
+      <TableDragDrop />
     </>
   );
 }
