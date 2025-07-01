@@ -1,5 +1,6 @@
 import Card from "../components/Card";
 import GoogleMapPage from "./GoogleMap";
+import ScanProfile from "./ScanProfile";
 import TableDragDrop from "./TableDragDrop";
 import TableManagement from "./TableManagement";
 
@@ -11,7 +12,8 @@ export default function Home() {
       <Card />
       <Card /> */}
       {/* <TableManagement /> */}
-      <TableDragDrop />
+      {/* <TableDragDrop /> */}
+      <ScanProfile />
     </>
   );
 }
